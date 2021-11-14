@@ -1,7 +1,6 @@
 package com.jerry.domainservice.api.cache;
 
 import com.jerry.domainservice.api.cache.exception.CachedObjectAlreadyExistedException;
-import com.jerry.domainservice.api.cache.exception.NoMatchedObjectException;
 import com.jerry.domainservice.api.cache.exception.NoSpaceException;
 
 /**
@@ -14,6 +13,7 @@ import com.jerry.domainservice.api.cache.exception.NoSpaceException;
 public interface CacheProvider<K,V> {
 	void add(K key,V obj) throws CachedObjectAlreadyExistedException, NoSpaceException;
 	void evict();
-	V get(K key) throws NoMatchedObjectException;
+	K getKey(V obj);
+	V getValue(K key);
 	boolean containsKey(K key);
 }

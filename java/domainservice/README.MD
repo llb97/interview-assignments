@@ -13,13 +13,13 @@ Host software MUST handle host names of up to 63 characters and SHOULD handle ho
 假设域名信息在系统中不需要永久缓存，增加自动淘汰机制，每隔1秒执行一次evict， 尝试淘汰10条记录，如果当前记录是活跃记录，则跳过。
 假设JVM最大堆内存为2G， 理想情况下预计可以存储810万左右域名信息，当超过设定阈值，并且没有数据可以淘汰时，为了防止服务器内存溢出拒绝请求。
 
-由于短域名为8位长度，可用字符62个，本程序在生成短域名时生成一个介于10000000 到 ZZZZZZZZ的62进制随机数。
+由于短域名为8位长度，可用字符62个，本程序在生成短域名时生成8位随机数。
 最大缓存映射关系配置于全局配置文件(application.yml)中
 
 
 
 ### 随机数生成：
-通过java random生成范围为3521614606208L-218340105584895L的随机数，转换为62进制字符串输出。
+通过java SecureRandom生成62以内的随机数，转换字符串输出。
 
 ## 校验
 ### 调用生成短域名信息接口时：
@@ -40,6 +40,3 @@ Host software MUST handle host names of up to 63 characters and SHOULD handle ho
 ## 单元测试
 由于interface, dto, config, properties以及sprint-boot启动class没有承载业务逻辑，因此这部分的代码在jacoco运行时中加入了excludes列表里。
 
-## 性能测试
-使用JMeter做性能测试，测试并发用户数300， 循环30000次。 
-JMeter测试脚本保存于jmeter目录。

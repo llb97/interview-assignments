@@ -6,9 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.jerry.domainservice.api.cache.CacheProvider;
-import com.jerry.domainservice.api.cache.impl.HashMapCacheProvider;
-import com.jerry.domainservice.api.service.DomainInformationBO;
 import com.jerry.domainservice.properties.DomainServiceProperties;
 
 import io.swagger.v3.oas.models.Components;
